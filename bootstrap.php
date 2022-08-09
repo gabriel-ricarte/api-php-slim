@@ -8,8 +8,8 @@ $capsule = new Capsule();
 $capsule->addConnection([
     "driver"    => "mysql",
     "host"      => $db_host,
-    "database"  => $db_database,
-    "username"  => $db_username,
+    "database"  => $db_name,
+    "username"  => $db_user,
     "password"  => $db_password,
     "charset"   => "utf8",
     "collation" => "utf8_general_ci",

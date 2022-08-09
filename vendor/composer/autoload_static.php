@@ -45,6 +45,10 @@ class ComposerStaticInit1f22acb25836922684163e7a70ab7551
             'Doctrine\\Inflector\\' => 19,
             'Doctrine\\Common\\Inflector\\' => 26,
         ),
+        'C' => 
+        array (
+            'Chatter\\' => 8,
+        ),
     );
 
     public static $prefixDirsPsr4 = array (
@@ -111,6 +115,10 @@ class ComposerStaticInit1f22acb25836922684163e7a70ab7551
         'Doctrine\\Common\\Inflector\\' => 
         array (
             0 => __DIR__ . '/..' . '/doctrine/inflector/lib/Doctrine/Common/Inflector',
+        ),
+        'Chatter\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src/Chatter',
         ),
     );
 
