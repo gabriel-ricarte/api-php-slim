@@ -24,5 +24,18 @@ $app->get('/messages', function($request, $response, $args) {
     return $response->withStatus(200)->withJson($payload);
 });
 
+$app->post('/messages', function($request, $response, $args) {
+    $_message = $request->getParsedBody();
+    $message = new Message();
+    $message->body = isset($_message['message']) ? $_message['message'] : '';
+    $message->user_id = -1;
+    if ($message->save()) {
+        $payload = ['message_id' => $message->id,
+                    'message_uri' => '/messages/' . $message->id];
+        return $response->withStatus(201)->withJson($payload);
+    }
+    return $response->withStatus(400);
+});
+
 $app->run();
 
