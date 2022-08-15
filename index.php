@@ -25,11 +25,19 @@ $app->get('/messages', function($request, $response, $args) {
 $app->post('/message', function($request, $response, $args) {
     $_message = $request->getParsedBody();
     //upload images
-    $imagePath = '';
+        $imagePath = '';
+        $files = $request->getUploadedFiles();
+        $newFile = $files['file']; 
+        if ($newFile->getError() === UPLOAD_ERR_OK) {
+            $uploadFilename = rand(1000, 9999) . '_' . date('YmdHis') . '_' . $newFile->getClientFilename();
+            $newFile->moveTo("assets/images/" . $uploadFilename);
+            $imagePath = "assets/images/" . $uploadFilename;
+        }
     //end 
     $message = new Message();
     $message->body = isset($_message['message']) ? $_message['message'] : '';
     $message->user_id = -1;
+    $message->image_url = $imagePath;
     if ($message->save()) {
         $payload = ['message_id' => $message->id,
                     'message_uri' => '/messages/' . $message->id];
